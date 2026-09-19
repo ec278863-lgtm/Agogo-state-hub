@@ -3,19 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agogo State Hub</title>
+    <title>Agogo State College | Official Portal & Hub</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; }
-        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
+        :root {
+            --primary: #002147;
+            --gold: #D4AF37;
+            --secondary: #1d3557;
+            --light: #f8f9fa;
+            --dark: #1A1A1A;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar & Navigation */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .brand h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .brand span {
+            color: var(--gold);
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,33,71,0.85), rgba(0,33,71,0.85)), url('https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .motto-badge {
+            display: inline-block;
+            background-color: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: var(--gold);
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Cards & Components */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .crest-box {
+            text-align: center;
+            background-color: #f0f4f8;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px dashed var(--primary);
+        }
+
+        .crest-svg {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 1rem;
+        }
+
+        /* Interactive Tabs/Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--primary);
+        }
+
+        /* House & Infrastructure Badges */
+        .house-badge {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--gold);
+            margin-bottom: 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 4px solid var(--gold);
+        }
+
+        /* Responsive Mobile View */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <div>
+                    <h1>AGOGO STATE COLLEGE</h1>
+                    <span>Agogo, Ashanti Region • Est. 1963</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#crest">Emblem</a></li>
+                    <li><a href="#houses">Houses</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#academics">Academics</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Showcase -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Agogo State College Hub</h2>
+            <p>Fostering academic excellence, discipline, and local heritage in the Asante Akyem North District.</p>
+            <div class="motto-badge">"Domini Nisi Frustra" (Except the Lord build the house, they labor in vain)</div>
+        </div>
+    </section>
+
+    <!-- Content Area -->
     <div class="container">
-        <h1>Welcome to Agogo State Hub</h1>
-        <p>This is the official website for our community.</p>
-        <p>Stay tuned for more updates and information.</p>
+
+        <!-- Crest & Visual Section -->
+        <section id="crest" style="margin-bottom: 4rem;">
+            <div class="section-title">
+                <h2>Official Crest & Identity</h2>
+            </div>
+            <div class="grid-2">
+                <div class="crest-box">
+                    <!-- Vector Representation of School Crest -->
+                    <svg class="crest-svg" viewBox="0 0 100 100">
+                        <path d="M50 5 L90 25 L90 65 L50 95 L10 65 L10 25 Z" fill="#002147" stroke="#D4AF37" stroke-width="3"/>
+                        <circle cx="50" cy="45" r="25" fill="#D4AF37"/>
+                        <!-- Book Symbol -->
+                        <path d="M40 40 L50 45 L60 40 L60 52 L50 55 L40 52 Z" fill="#002147"/>
+                        <!-- Torch Symbol -->
+                        <path d="M49 30 L51 30 L51 38 L49 38 Z" fill="#ffffff"/>
+                        <path d="M48 26 C48 26, 50 22, 52 26 C54 30, 46 30, 48 26 Z" fill="#e63946"/>
+                        <text x="50" y="82" font-size="8" fill="#ffffff" text-anchor="middle" font-weight="bold">EST. 1963</text>
+                    </svg>
+                    <h3>Official Seal</h3>
+                    <p style="font-size:0.9rem; color:#666; margin-top:0.5rem;">Representing Enlightenment, Heritage, and Academic Excellence.</p>
+                </div>
+                <div class="card">
+                    <h3>Emblem Breakdown</h3>
+                    <ul style="margin-left: 1.2rem; margin-top: 1rem;">
+                        <li><strong>The Shield:</strong> Represents protection, strength, and integrity.</li>
+                        <li><strong>The Open Book:</strong> Signifies commitment to intellectual development and WASSCE academic tracks.</li>
+                        <li><strong>The Torch:</strong> Symbolizes guidance, leadership, and moral light.</li>
+                        <li><strong>Founding Year (1963):</strong> Commemorates the establishment by local leadership and the Agogo Traditional Council.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Houses & Student Life -->
+        <section id="houses" style="margin-bottom: 4rem;">
+            <div class="section-title">
+                <h2>Residential Houses</h2>
+            </div>
+            <div class="grid-3">
+                <div class="house-badge">
+                    <div>
+                        <h4>Aggrey House</h4>
+                        <p style="font-size: 0.85rem;">Male & Female Boarding Division</p>
+                    </div>
+                </div>
+                <div class="house-badge">
+                    <div>
+                        <h4>Nkrumah House</h4>
+                        <p style="font-size: 0.85rem;">Male & Female Boarding Division</p>
+                    </div>
+                </div>
+                <div class="house-badge">
+                    <div>
+                        <h4>Prempeh House</h4>
+                        <p style="font-size: 0.85rem;">Male & Female Boarding Division</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Campus Facilities -->
+        <section id="facilities" style="margin-bottom: 4rem;">
+            <div class="section-title">
+                <h2>Campus Facilities</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Science Laboratories</h3>
+                    <p>Fully equipped facilities supporting practical lessons in Physics, Chemistry, and Biology.</p>
+                </div>
+                <div class="card">
+                    <h3>ICT Center</h3>
+                    <p>Computer laboratory offering practical digital literacy and computing coursework.</p>
+                </div>
+                <div class="card">
+                    <h3>Library & Assembly</h3>
+                    <p>Central study area stocked with core textbooks, reference materials, and multi-purpose hall.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Streams -->
+        <section id="academics">
+            <div class="section-title">
+                <h2>Academic Programs</h2>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>General Arts & Business</h3>
+                    <p>Offers Literature, Geography, Government, Economics, Elective Mathematics, Accounting, and Business Management.</p>
+                </div>
+                <div class="card">
+                    <h3>Science, Agriculture & Vocational</h3>
+                    <p>Covers Physics, Chemistry, Biology, General Agriculture, Graphic Design, Home Economics, and Visual Arts.</p>
+                </div>
+            </div>
+        </section>
+
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Agogo State College Hub. Category C Public Senior High School.</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--gold);">Asante Akyem North District, Ashanti Region, Ghana</p>
+    </footer>
+
+    <script>
+        // Interactive Scroll Effects
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 
